@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Web Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    #question-container {
+      margin-top: 50px;
+    }
+
+    #gif-container {
+      display: inline-block;
+    }
+
+    #options-container {
+      margin-top: 20px;
+    }
+
+    .option {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #option1 {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #option2 {
+      background-color: #f44336;
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="gif-container">
+    <img src="page1.gif" alt="GIF" width="400" height="350">
+  </div>
+
+  <div id="question-container">
+    <h2 id="question">Ditsa, will you be my valentine?</h2>
+  </div>
+
+  <div id="options-container">
+    <div id="option1" class="option" onclick="changeEmoji()">YES !</div>
+    <div id="option2" class="option" onclick="showNextSentence()">NO</div>
+  </div>
+  <script>
+    var sentences = [
+      "Are you sure ?🤨",
+      "Think again!",
+      "Really ?😑",
+      "You really saying no !",
+      "last chance!",
+      "Sotti ses bar bolchhi kintu !!",
+      "Whaat ?",
+      "👈 Look how beautiful this button is!",
+      "👈👈👈👈👈👈 yeah this button!",
+      "W T F!!",
+      "unbelievable !",
+      "abbe Ondho !!",
+      "Now you r even scrolling down just to say NO !!",
+      "Really disappointing",
+      "kichhu bolar nei r !",
+      "more ja bhai"
+    ];
+
+    var currentSentenceIndex = 0;
+
+    function changeEmoji() {
+      var gifContainer = document.getElementById('gif-container');
+      gifContainer.innerHTML = '<img src="kiss.gif" alt="GIF 1" width="600" height="400"><br><img src="gif2.gif" alt="GIF 2" width="600" height="400">';
+      document.getElementById('question-container').style.display = 'none';
+      document.getElementById('options-container').style.display = 'none';
+      //document.getElementById('thank-you').style.display = 'block';
+    }
+
+    function increaseSize() {
+      var option1Element = document.getElementById('option1');
+      var currentSize = window.getComputedStyle(option1Element).fontSize;
+      var newSize = (parseFloat(currentSize) * 1.4) + 'px';
+      option1Element.style.fontSize = newSize;
+    }
+
+    function showNextSentence() {
+      var option2Element = document.getElementById('option2');
+      option2Element.textContent = sentences[currentSentenceIndex];
+      currentSentenceIndex = (currentSentenceIndex + 1) % sentences.length;
+      increaseSize(); // Call the function to increase size of option1 when option2 is clicked
+    }
+  </script>
+
+</body>
+</html>
